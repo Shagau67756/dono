@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help a Soldier 💪</title>
+  <style> 
+    /* ===== בסיס ===== */
+    html, body {
+      font-family: 'Assistant', sans-serif;
+      background-color: #1a1919;
+      margin: 0;
+      padding: 0;
+      color: #ddd;
+      font-weight: 600; /* כתב עבה יותר כברירת מחדל */
+    }
+
+    /* ===== פריסת גריד ===== */
+    .grid-container {
+      display: grid;
+      grid-template-areas: 
+        "title title"
+        "pic txt"
+        "footer footer";
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      gap: 1rem;
+      padding: 2rem;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .title {
+      grid-area: title;
+      background: rgba(117, 113, 113, 0.6);
+      border: 2px solid rgba(77, 60, 52, 0.3);
+      font-size: 2.5vw;
+      text-align: center;
+      font-weight: 800; /* עבה במיוחד */
+      padding: 1rem;
+      border-radius: 10px;
+      letter-spacing: 0.5px;
+      color: rgb(240, 240, 240);
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    .pic {
+      grid-area: pic;
+      background: rgba(117, 113, 113, 0.6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .txt {
+      grid-area: txt;
+      background: rgba(117, 113, 113, 0.6);
+      padding: 1.5rem;
+      border-radius: 10px;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      font-weight: 600; /* עבה */
+    }
+
+    .txt li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer {
+      grid-area: footer;
+      text-align: center;
+      background: rgba(117, 113, 113, 0.6);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    /* ===== כפתור ===== */
+    #kaftor {
+      width: 60%;
+      max-width: 300px;
+      background-color: #007aff;
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      font-weight: 800; /* כפתור מודגש */
+      padding: 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    }
+
+    #kaftor:hover {
+      background-color: #005ec7;
+      transform: scale(1.05);
+    }
+
+    /* ===== תיבת התרומה ===== */
+    .container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateY(20px);
+      width: 90%;
+      max-width: 500px;
+      background: #f1efef;
+      color: #222;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.5s cubic-bezier(.17,.67,.83,.67);
+      z-index: 1000;
+      font-weight: 600;
+    }
+
+    .container.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .dono {
+      margin-top: 20px;
+      text-align: center;
+      background-color: #007aff;
+      color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== התאמה למובייל ===== */
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-areas:
+          "title"
+          "txt"
+          "pic"
+          "footer";
+        grid-template-columns: 1fr;
+      }
+
+      .title {
+        font-size: 6vw;
+      }
+
+      #kaftor {
+        font-size: 1.3rem;
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grid-container">
+    <div class="title">Help us to help a soldier 💪</div>
+    
+    <div class="pic">
+      <img src="soldier.jpeg" alt="index.html">
+    </div>
+    
+    <div class="txt">
+      <ul>
+        <li>Hello everyone!!</li>
+        <li>We're trying to collect money to help <b>Or</b>, a soldier at Battalion 890, purchase new combat equipment.</li>
+        <li>Although the army provides basic gear, it's old, heavy, and uncomfortable.</li>
+        <li>When you look and feel good — you <b>perform better</b>.</li>
+        <li>That's why soldiers buy their own combat gear, but Or can't afford it — and that’s where <b>you</b> come in!</li>
+        <li>Your donation will help him buy a new vest, a better backpack, and more.</li>
+        <li>For questions, call 📞 053-828-8972</li>
+        <li>Thank you ❤️</li>
+      </ul>
+    </div>
+    
+    <div class="footer">
+      <button id="kaftor">Donate</button>
+    </div>
+  </div>
+
+  <!-- תיבת התרומה הנסתרת -->
+  <div id="hidden" class="container">
+    <ul>
+      <li>💬 Hello everyone! We are trying to raise money for an IDF soldier who’s lacking proper equipment.</li>
+      <li>🎖️ He is soon going to the <b>Commanders Course (קורס מכ"ים)</b>. Unfortunately, the army only provides new helmets, while most other gear is old and worn out.</li>
+      <li>💪 Help us enable him to purchase new, reliable equipment — any donation helps!</li>
+      <li>🎯 <b>Our goal:</b> $2,100</li>
+    </ul>
+
+    <div class="dono">
+      <b>Donate via <a href="https://www.bitpay.co.il/app/me/6E2BF198-EAED-2087-ED29-0184D1B2CDB28F7F">Bit</a></b><br>
+      📱 <span style="font-size: 1.3rem;">053-828-8972</span>
+    </div>
+  </div>
+
+  <script>
+    const button = document.getElementById('kaftor');
+    const container = document.getElementById('hidden');
+
+    button.addEventListener('click', () => {
+      container.classList.toggle('visible');
+    });
+  </script>
+
+</body>
+</html>
+
